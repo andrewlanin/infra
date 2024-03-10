@@ -1,0 +1,3 @@
+token = DISCORD_MUSIC_BOT_TOKEN
+owner = DISCORD_MUSIC_BOT_OWNER
+prefix = "/"

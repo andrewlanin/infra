@@ -1,0 +1,9 @@
+version: "3.8"
+
+name: infra
+
+services:
+  discord_music_bot:
+    build: ../../containers/discord_music_bot
+    env_file: ../../secrets.env
+    restart: always
