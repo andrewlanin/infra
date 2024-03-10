@@ -4,7 +4,7 @@ name: infra
 
 services:
   caddy:
-    build: ../../containers/caddy
+    build: containers/caddy
     ports:
       - 80:80
       - 443:443
@@ -13,8 +13,8 @@ services:
     restart: unless-stopped
 
   discord_music_bot:
-    build: ../../containers/discord_music_bot
-    env_file: ../../secrets.env
+    build: containers/discord_music_bot
+    env_file: secrets.env
     restart: unless-stopped
 
   syncthing:
