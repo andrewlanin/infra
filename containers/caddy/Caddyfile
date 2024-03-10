@@ -1,0 +1,8 @@
+lanin.dev {
+    root * /usr/share/caddy
+    file_server
+}
+
+sync.lanin.dev {
+    reverse_proxy syncthing:8384
+}
