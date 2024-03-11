@@ -9,7 +9,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - /data/sync/infra/caddy:/data/caddy
+      - /data/infra/caddy:/data/caddy
     restart: unless-stopped
 
   discord_music_bot:
@@ -27,6 +27,6 @@ services:
       - 22000:22000/tcp
       - 22000:22000/udp
     volumes:
-      - /data/syncthing:/var/syncthing
+      - /data/infra/syncthing:/var/syncthing
       - /data/sync:/data/sync
     restart: unless-stopped
