@@ -7,9 +7,9 @@
 deploy:
 	scp -r \
 		containers \
+		secrets \
 		hosts/$(HOST)/docker-compose.yaml \
 		Makefile \
-		secrets.env \
 		$(HOST):~/infra
 	ssh $(HOST) 'make -C ~/infra up'
 

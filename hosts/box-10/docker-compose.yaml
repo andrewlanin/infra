@@ -14,7 +14,7 @@ services:
 
   discord_music_bot:
     build: containers/discord_music_bot
-    env_file: secrets.env
+    env_file: secrets/discord_music_bot.env
     restart: unless-stopped
 
   syncthing:
