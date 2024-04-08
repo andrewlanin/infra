@@ -6,3 +6,11 @@ lanin.dev {
 sync.lanin.dev {
     reverse_proxy syncthing:8384
 }
+
+gitea.lanin.dev {
+    reverse_proxy gitea:3000
+}
+
+drone.lanin.dev {
+    reverse_proxy drone:80
+}

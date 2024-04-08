@@ -6,8 +6,8 @@ services:
   caddy:
     build: containers/caddy
     ports:
-      - 80:80
-      - 443:443
+      - 80:80/tcp
+      - 443:443/tcp
     volumes:
       - /data/infra/caddy:/data/caddy
     restart: unless-stopped
@@ -29,4 +29,35 @@ services:
     volumes:
       - /data/infra/syncthing:/var/syncthing
       - /data/sync:/data/sync
+    restart: unless-stopped
+
+  gitea:
+    image: gitea/gitea:1.21.10
+    ports:
+      - 22:22/tcp
+    volumes:
+      - /data/infra/gitea:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+
+  drone:
+    image: drone/drone:2.22.0
+    environment:
+      - DRONE_GITEA_SERVER=https://gitea.lanin.dev
+      - DRONE_SERVER_HOST=drone.lanin.dev
+      - DRONE_SERVER_PROTO=https
+    env_file: secrets/drone.env
+    volumes:
+      - /data/infra/drone:/data
+    restart: unless-stopped
+
+  drone_runner:
+    image: drone/drone-runner-docker:1.8.3
+    environment:
+      - DRONE_RPC_HOST=drone.lanin.dev
+      - DRONE_RPC_PROTO=https
+    env_file: secrets/drone_runner.env
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
